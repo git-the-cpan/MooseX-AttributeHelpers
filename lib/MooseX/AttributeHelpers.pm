@@ -1,13 +1,14 @@
 
 package MooseX::AttributeHelpers;
 
-our $VERSION   = '0.01';
+our $VERSION   = '0.02';
 our $AUTHORITY = 'cpan:STEVAN';
 
 use MooseX::AttributeHelpers::Meta::Method::Provided;
 
 use MooseX::AttributeHelpers::Counter;
 use MooseX::AttributeHelpers::Number;
+use MooseX::AttributeHelpers::Collection::List;
 use MooseX::AttributeHelpers::Collection::Array;
 use MooseX::AttributeHelpers::Collection::Hash;
 
@@ -80,13 +81,17 @@ Common methods for hash references.
 
 Common methods for array references.
 
+=item L<Collection::Array|MooseX::AttributeHelpers::Collection::List>
+
+Common list methods for array references. 
+
 =back
 
 =head1 CAVEAT
 
 This is an early release of this module. Right now it is in great need 
 of documentation and tests in the test suite. However, we have used this 
-module to great success at $work where it has been tested very thoroughly
+module to great success at C<$work> where it has been tested very thoroughly
 and deployed into a major production site.
 
 I plan on getting better docs and tests in the next few releases, but until 
