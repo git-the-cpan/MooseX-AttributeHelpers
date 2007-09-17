@@ -2,15 +2,15 @@
 use ExtUtils::MakeMaker;
 WriteMakefile
 (
-          'PL_FILES' => {},
-          'INSTALLDIRS' => 'site',
           'NAME' => 'MooseX::AttributeHelpers',
-          'EXE_FILES' => [],
           'VERSION_FROM' => 'lib/MooseX/AttributeHelpers.pm',
           'PREREQ_PM' => {
-                           'Test::More' => '0.62',
+                           'Moose' => '0.24',
                            'Test::Exception' => '0.21',
-                           'Moose' => '0.24'
-                         }
+                           'Test::More' => '0.62'
+                         },
+          'INSTALLDIRS' => 'site',
+          'EXE_FILES' => [],
+          'PL_FILES' => {}
         )
 ;

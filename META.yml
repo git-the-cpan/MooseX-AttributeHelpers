@@ -1,6 +1,6 @@
 ---
 name: MooseX-AttributeHelpers
-version: 0.02
+version: 0.03
 author:
   - 'Stevan Little E<lt>stevan@iinteractive.comE<gt>'
 abstract: Extend your attribute interfaces
@@ -25,7 +25,7 @@ provides:
     file: lib/MooseX/AttributeHelpers/Number.pm
   MooseX::AttributeHelpers:
     file: lib/MooseX/AttributeHelpers.pm
-    version: 0.02
+    version: 0.03
   MooseX::AttributeHelpers::Base:
     file: lib/MooseX/AttributeHelpers/Base.pm
     version: 0.02
@@ -61,7 +61,7 @@ provides:
   MooseX::AttributeHelpers::Number:
     file: lib/MooseX/AttributeHelpers/Number.pm
     version: 0.02
-generated_by: Module::Build version 0.2805
+generated_by: Module::Build version 0.2808
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
   version: 1.2
