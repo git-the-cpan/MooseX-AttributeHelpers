@@ -1,25 +1,25 @@
 
-package MooseX::AttributeHelpers::Collection::List;
+package MooseX::AttributeHelpers::Collection::ImmutableHash;
 use Moose;
 
 our $VERSION   = '0.01';
 our $AUTHORITY = 'cpan:STEVAN';
 
-use MooseX::AttributeHelpers::MethodProvider::List;
+use MooseX::AttributeHelpers::MethodProvider::ImmutableHash;
 
 extends 'MooseX::AttributeHelpers::Collection';
 
 has '+method_provider' => (
-    default => 'MooseX::AttributeHelpers::MethodProvider::List'
+    default => 'MooseX::AttributeHelpers::MethodProvider::ImmutableHash'
 );
 
-sub helper_type { 'ArrayRef' }
+sub helper_type { 'HashRef' }
 
 no Moose;
 
 # register the alias ...
-package Moose::Meta::Attribute::Custom::Collection::List;
-sub register_implementation { 'MooseX::AttributeHelpers::Collection::List' }
+package Moose::Meta::Attribute::Custom::Collection::ImmutableHash;
+sub register_implementation { 'MooseX::AttributeHelpers::Collection::ImmutableHash' }
 
 
 1;
@@ -30,7 +30,7 @@ __END__
 
 =head1 NAME
 
-MooseX::AttributeHelpers::Collection::List
+MooseX::AttributeHelpers::Collection::ImmutableHash
 
 =head1 SYNOPSIS
 
@@ -39,20 +39,21 @@ MooseX::AttributeHelpers::Collection::List
   use MooseX::AttributeHelpers;
   
   has 'options' => (
-      metaclass => 'Collection::List',
+      metaclass => 'Collection::ImmutableHash',
       is        => 'ro',
-      isa       => 'ArrayRef[Int]',
-      default   => sub { [] },
+      isa       => 'HashRef[Str]',
+      default   => sub { {} },
       provides  => {
-          map  => 'map_options',
-          grep => 'fitler_options',
+          'get'    => 'get_option',            
+          'empty'  => 'has_options',
+          'keys'   => 'get_option_list',
       }
   );
-
+  
 =head1 DESCRIPTION
 
-This module provides an List attribute which provides a number of 
-list operations. See L<MooseX::AttributeHelpers::MethodProvider::List>
+This module provides a immutable HashRef attribute which provides a number of 
+hash-line operations. See L<MooseX::AttributeHelpers::MethodProvider::ImmutableHash>
 for more details.
 
 =head1 METHODS

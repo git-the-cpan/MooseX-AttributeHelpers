@@ -1,7 +1,7 @@
 package MooseX::AttributeHelpers::MethodProvider::Array;
 use Moose::Role;
 
-our $VERSION   = '0.02';
+our $VERSION   = '0.05';
 our $AUTHORITY = 'cpan:STEVAN';
 
 with 'MooseX::AttributeHelpers::MethodProvider::List';
@@ -9,8 +9,8 @@ with 'MooseX::AttributeHelpers::MethodProvider::List';
 sub push : method {
     my ($attr, $reader, $writer) = @_;
     
-    if ($attr->has_container_type) {
-        my $container_type_constraint = $attr->container_type_constraint;
+    if ($attr->has_type_constraint && $attr->type_constraint->isa('Moose::Meta::TypeConstraint::Parameterized')) {
+        my $container_type_constraint = $attr->type_constraint->type_parameter;
         return sub { 
             my $instance = CORE::shift;
             $container_type_constraint->check($_) 
@@ -36,8 +36,8 @@ sub pop : method {
 
 sub unshift : method {
     my ($attr, $reader, $writer) = @_;
-    if ($attr->has_container_type) {
-        my $container_type_constraint = $attr->container_type_constraint;
+    if ($attr->has_type_constraint && $attr->type_constraint->isa('Moose::Meta::TypeConstraint::Parameterized')) {
+        my $container_type_constraint = $attr->type_constraint->type_parameter;
         return sub { 
             my $instance = CORE::shift;
             $container_type_constraint->check($_) 
@@ -60,13 +60,6 @@ sub shift : method {
         CORE::shift @{$reader->($_[0])} 
     };
 }
-
-sub clear : method {
-    my ($attr, $reader, $writer) = @_;
-    return sub { 
-        @{$reader->($_[0])} = ()
-    };
-}
    
 sub get : method {
     my ($attr, $reader, $writer) = @_;
@@ -77,8 +70,8 @@ sub get : method {
 
 sub set : method {
     my ($attr, $reader, $writer) = @_;
-    if ($attr->has_container_type) {
-        my $container_type_constraint = $attr->container_type_constraint;
+    if ($attr->has_type_constraint && $attr->type_constraint->isa('Moose::Meta::TypeConstraint::Parameterized')) {
+        my $container_type_constraint = $attr->type_constraint->type_parameter;
         return sub { 
             ($container_type_constraint->check($_[2])) 
                 || confess "Value " . ($_[2]||'undef') . " did not pass container type constraint";
@@ -90,6 +83,37 @@ sub set : method {
             $reader->($_[0])->[$_[1]] = $_[2] 
         };
     }
+}
+
+sub clear : method {
+    my ($attr, $reader, $writer) = @_;
+    return sub { 
+        @{$reader->($_[0])} = ()
+    };
+}
+
+sub delete : method {
+    my ($attr, $reader, $writer) = @_;
+    return sub {
+        CORE::splice @{$reader->($_[0])}, $_[1], 1;
+    }
+}
+
+sub insert : method {
+    my ($attr, $reader, $writer) = @_;
+    if ($attr->has_type_constraint && $attr->type_constraint->isa('Moose::Meta::TypeConstraint::Parameterized')) {
+        my $container_type_constraint = $attr->type_constraint->type_parameter;
+        return sub { 
+            ($container_type_constraint->check($_[2])) 
+                || confess "Value " . ($_[2]||'undef') . " did not pass container type constraint";
+            CORE::splice @{$reader->($_[0])}, $_[1], 0, $_[2];
+        };                    
+    }
+    else {                
+        return sub { 
+            CORE::splice @{$reader->($_[0])}, $_[1], 0, $_[2];
+        };
+    }    
 }
  
 1;
@@ -135,6 +159,10 @@ see those provied methods, refer to that documentation.
 =item B<unshift>
 
 =item B<clear>
+
+=item B<delete>
+
+=item B<insert>
 
 =back
 

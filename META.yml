@@ -1,6 +1,6 @@
 ---
 name: MooseX-AttributeHelpers
-version: 0.03
+version: 0.04
 author:
   - 'Stevan Little E<lt>stevan@iinteractive.comE<gt>'
 abstract: Extend your attribute interfaces
@@ -8,15 +8,19 @@ license: perl
 resources:
   license: http://dev.perl.org/licenses/
 requires:
-  Moose: 0.24
+  Moose: 0.30
 build_requires:
   Test::Exception: 0.21
   Test::More: 0.62
 provides:
   Moose::Meta::Attribute::Custom::Collection::Array:
     file: lib/MooseX/AttributeHelpers/Collection/Array.pm
+  Moose::Meta::Attribute::Custom::Collection::Bag:
+    file: lib/MooseX/AttributeHelpers/Collection/Bag.pm
   Moose::Meta::Attribute::Custom::Collection::Hash:
     file: lib/MooseX/AttributeHelpers/Collection/Hash.pm
+  Moose::Meta::Attribute::Custom::Collection::ImmutableHash:
+    file: lib/MooseX/AttributeHelpers/Collection/ImmutableHash.pm
   Moose::Meta::Attribute::Custom::Collection::List:
     file: lib/MooseX/AttributeHelpers/Collection/List.pm
   Moose::Meta::Attribute::Custom::Counter:
@@ -25,36 +29,48 @@ provides:
     file: lib/MooseX/AttributeHelpers/Number.pm
   MooseX::AttributeHelpers:
     file: lib/MooseX/AttributeHelpers.pm
-    version: 0.03
+    version: 0.04
   MooseX::AttributeHelpers::Base:
     file: lib/MooseX/AttributeHelpers/Base.pm
-    version: 0.02
+    version: 0.03
   MooseX::AttributeHelpers::Collection:
     file: lib/MooseX/AttributeHelpers/Collection.pm
-    version: 0.01
+    version: 0.03
   MooseX::AttributeHelpers::Collection::Array:
     file: lib/MooseX/AttributeHelpers/Collection/Array.pm
     version: 0.01
+  MooseX::AttributeHelpers::Collection::Bag:
+    file: lib/MooseX/AttributeHelpers/Collection/Bag.pm
+    version: 0.01
   MooseX::AttributeHelpers::Collection::Hash:
     file: lib/MooseX/AttributeHelpers/Collection/Hash.pm
+    version: 0.02
+  MooseX::AttributeHelpers::Collection::ImmutableHash:
+    file: lib/MooseX/AttributeHelpers/Collection/ImmutableHash.pm
     version: 0.01
   MooseX::AttributeHelpers::Collection::List:
     file: lib/MooseX/AttributeHelpers/Collection/List.pm
     version: 0.01
   MooseX::AttributeHelpers::Counter:
     file: lib/MooseX/AttributeHelpers/Counter.pm
-    version: 0.01
+    version: 0.03
   MooseX::AttributeHelpers::Meta::Method::Provided:
     file: lib/MooseX/AttributeHelpers/Meta/Method/Provided.pm
   MooseX::AttributeHelpers::MethodProvider::Array:
     file: lib/MooseX/AttributeHelpers/MethodProvider/Array.pm
+    version: 0.05
+  MooseX::AttributeHelpers::MethodProvider::Bag:
+    file: lib/MooseX/AttributeHelpers/MethodProvider/Bag.pm
     version: 0.02
   MooseX::AttributeHelpers::MethodProvider::Counter:
     file: lib/MooseX/AttributeHelpers/MethodProvider/Counter.pm
     version: 0.02
   MooseX::AttributeHelpers::MethodProvider::Hash:
     file: lib/MooseX/AttributeHelpers/MethodProvider/Hash.pm
-    version: 0.01
+    version: 0.03
+  MooseX::AttributeHelpers::MethodProvider::ImmutableHash:
+    file: lib/MooseX/AttributeHelpers/MethodProvider/ImmutableHash.pm
+    version: 0.03
   MooseX::AttributeHelpers::MethodProvider::List:
     file: lib/MooseX/AttributeHelpers/MethodProvider/List.pm
     version: 0.01

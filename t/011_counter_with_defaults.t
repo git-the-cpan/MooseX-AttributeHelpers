@@ -13,17 +13,7 @@ BEGIN {
     package MyHomePage;
     use Moose;
 
-    has 'counter' => (
-        metaclass => 'Counter',
-        is        => 'ro',
-        isa       => 'Int',
-        default   => sub { 0 },
-        provides  => {
-            inc   => 'inc_counter',
-            dec   => 'dec_counter',
-            reset => 'reset_counter',
-        }
-    );
+    has 'counter' => (metaclass => 'Counter');
 }
 
 my $page = MyHomePage->new();
@@ -56,11 +46,11 @@ isa_ok($counter, 'MooseX::AttributeHelpers::Counter');
 
 is($counter->helper_type, 'Num', '... got the expected helper type');
 
-is($counter->type_constraint->name, 'Int', '... got the expected type constraint');
+is($counter->type_constraint->name, 'Num', '... got the expected default type constraint');
 
 is_deeply($counter->provides, { 
     inc   => 'inc_counter',
     dec   => 'dec_counter',
     reset => 'reset_counter',        
-}, '... got the right provides methods');
+}, '... got the right default provides methods');
 

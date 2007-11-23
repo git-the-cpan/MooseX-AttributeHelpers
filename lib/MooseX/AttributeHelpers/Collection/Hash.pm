@@ -2,7 +2,7 @@
 package MooseX::AttributeHelpers::Collection::Hash;
 use Moose;
 
-our $VERSION   = '0.01';
+our $VERSION   = '0.02';
 our $AUTHORITY = 'cpan:STEVAN';
 
 use MooseX::AttributeHelpers::MethodProvider::Hash;
@@ -54,8 +54,8 @@ MooseX::AttributeHelpers::Collection::Hash
   
 =head1 DESCRIPTION
 
-This module provides an Array attribute which provides a number of 
-array operations. See L<MooseX::AttributeHelpers::MethodProvider::Hash>
+This module provides an Hash attribute which provides a number of 
+hash-like operations. See L<MooseX::AttributeHelpers::MethodProvider::Hash>
 for more details.
 
 =head1 METHODS
