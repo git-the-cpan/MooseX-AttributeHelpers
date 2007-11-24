@@ -1,6 +1,6 @@
 ---
 name: MooseX-AttributeHelpers
-version: 0.04
+version: 0.05
 author:
   - 'Stevan Little E<lt>stevan@iinteractive.comE<gt>'
 abstract: Extend your attribute interfaces
@@ -8,28 +8,15 @@ license: perl
 resources:
   license: http://dev.perl.org/licenses/
 requires:
+  Class::MOP: 0.47
   Moose: 0.30
 build_requires:
   Test::Exception: 0.21
   Test::More: 0.62
 provides:
-  Moose::Meta::Attribute::Custom::Collection::Array:
-    file: lib/MooseX/AttributeHelpers/Collection/Array.pm
-  Moose::Meta::Attribute::Custom::Collection::Bag:
-    file: lib/MooseX/AttributeHelpers/Collection/Bag.pm
-  Moose::Meta::Attribute::Custom::Collection::Hash:
-    file: lib/MooseX/AttributeHelpers/Collection/Hash.pm
-  Moose::Meta::Attribute::Custom::Collection::ImmutableHash:
-    file: lib/MooseX/AttributeHelpers/Collection/ImmutableHash.pm
-  Moose::Meta::Attribute::Custom::Collection::List:
-    file: lib/MooseX/AttributeHelpers/Collection/List.pm
-  Moose::Meta::Attribute::Custom::Counter:
-    file: lib/MooseX/AttributeHelpers/Counter.pm
-  Moose::Meta::Attribute::Custom::Number:
-    file: lib/MooseX/AttributeHelpers/Number.pm
   MooseX::AttributeHelpers:
     file: lib/MooseX/AttributeHelpers.pm
-    version: 0.04
+    version: 0.05
   MooseX::AttributeHelpers::Base:
     file: lib/MooseX/AttributeHelpers/Base.pm
     version: 0.03
