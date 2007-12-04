@@ -1,6 +1,6 @@
 ---
 name: MooseX-AttributeHelpers
-version: 0.05
+version: 0.06
 author:
   - 'Stevan Little E<lt>stevan@iinteractive.comE<gt>'
 abstract: Extend your attribute interfaces
@@ -16,10 +16,10 @@ build_requires:
 provides:
   MooseX::AttributeHelpers:
     file: lib/MooseX/AttributeHelpers.pm
-    version: 0.05
+    version: 0.06
   MooseX::AttributeHelpers::Base:
     file: lib/MooseX/AttributeHelpers/Base.pm
-    version: 0.03
+    version: 0.04
   MooseX::AttributeHelpers::Collection:
     file: lib/MooseX/AttributeHelpers/Collection.pm
     version: 0.03
