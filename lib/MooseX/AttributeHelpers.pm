@@ -1,13 +1,14 @@
 
 package MooseX::AttributeHelpers;
 
-our $VERSION   = '0.06';
+our $VERSION   = '0.07';
 our $AUTHORITY = 'cpan:STEVAN';
 
 use MooseX::AttributeHelpers::Meta::Method::Provided;
 
 use MooseX::AttributeHelpers::Counter;
 use MooseX::AttributeHelpers::Number;
+use MooseX::AttributeHelpers::String;
 use MooseX::AttributeHelpers::Collection::List;
 use MooseX::AttributeHelpers::Collection::Array;
 use MooseX::AttributeHelpers::Collection::Hash;
@@ -124,9 +125,11 @@ Robert (phaylon) Sedlacek
 
 Tom (dec) Lanyon
 
+Yuval Kogman
+
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2007 by Infinity Interactive, Inc.
+Copyright 2007, 2008 by Infinity Interactive, Inc.
 
 L<http://www.iinteractive.com>
 
