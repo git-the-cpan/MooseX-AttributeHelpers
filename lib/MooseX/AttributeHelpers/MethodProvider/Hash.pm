@@ -1,7 +1,7 @@
 package MooseX::AttributeHelpers::MethodProvider::Hash;
 use Moose::Role;
 
-our $VERSION   = '0.03';
+our $VERSION   = '0.04';
 our $AUTHORITY = 'cpan:STEVAN';
 
 with 'MooseX::AttributeHelpers::MethodProvider::ImmutableHash';
@@ -43,7 +43,7 @@ sub set : method {
                     push @values, shift @kvp;
                 }
 
-                @{ $reader->($_[0]) }{@keys} = {@values};
+                @{ $reader->($_[0]) }{@keys} = @values;
             }
         };
     }
@@ -56,7 +56,10 @@ sub clear : method {
 
 sub delete : method {
     my ($attr, $reader, $writer) = @_;
-    return sub { CORE::delete $reader->($_[0])->{$_[1]} };
+    return sub { 
+        my $hashref = $reader->(shift);
+        CORE::delete @{$hashref}{@_};
+    };
 }
 
 1;
@@ -123,7 +126,7 @@ Stevan Little E<lt>stevan@iinteractive.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2007 by Infinity Interactive, Inc.
+Copyright 2007-2008 by Infinity Interactive, Inc.
 
 L<http://www.iinteractive.com>
 

@@ -2,16 +2,16 @@
 use ExtUtils::MakeMaker;
 WriteMakefile
 (
+          'PL_FILES' => {},
+          'INSTALLDIRS' => 'site',
           'NAME' => 'MooseX::AttributeHelpers',
+          'EXE_FILES' => [],
           'VERSION_FROM' => 'lib/MooseX/AttributeHelpers.pm',
           'PREREQ_PM' => {
-                           'Class::MOP' => '0.47',
-                           'Moose' => '0.30',
+                           'Test::More' => '0.62',
                            'Test::Exception' => '0.21',
-                           'Test::More' => '0.62'
-                         },
-          'INSTALLDIRS' => 'site',
-          'EXE_FILES' => [],
-          'PL_FILES' => {}
+                           'Class::MOP' => '0.47',
+                           'Moose' => '0.30'
+                         }
         )
 ;
