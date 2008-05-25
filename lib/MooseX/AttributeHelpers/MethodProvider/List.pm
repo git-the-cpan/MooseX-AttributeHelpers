@@ -14,7 +14,7 @@ sub count : method {
 sub empty : method {
     my ($attr, $reader, $writer) = @_;
     return sub { 
-        scalar @{$reader->($_[0])} ? 1 : 0 
+        scalar @{$reader->($_[0])} ? 1 : 0
     };        
 }
 
@@ -42,6 +42,22 @@ sub grep : method {
     return sub {
         my ($instance, $predicate) = @_;
         CORE::grep { $predicate->($_) } @{$reader->($instance)}
+    };
+}
+
+sub elements : method {
+    my ($attr, $reader, $writer) = @_;
+    return sub {
+        my ($instance) = @_;
+        @{$reader->($instance)}
+    };
+}
+
+sub join : method {
+    my ($attr, $reader, $writer) = @_;
+    return sub {
+        my ($instance, $separator) = @_;
+        join $separator, @{$reader->($instance)}
     };
 }
 
@@ -81,6 +97,10 @@ L<MooseX::AttributeHelpers::Collection::List>.
 =item B<grep>
 
 =item B<map>
+
+=item B<elements>
+
+=item B<join>
 
 =back
 
