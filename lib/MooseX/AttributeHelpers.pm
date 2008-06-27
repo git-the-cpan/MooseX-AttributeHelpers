@@ -1,14 +1,16 @@
 
 package MooseX::AttributeHelpers;
 
-our $VERSION   = '0.09';
+our $VERSION   = '0.11';
 our $AUTHORITY = 'cpan:STEVAN';
 
 use MooseX::AttributeHelpers::Meta::Method::Provided;
+use MooseX::AttributeHelpers::Meta::Method::Curried;
 
 use MooseX::AttributeHelpers::Counter;
 use MooseX::AttributeHelpers::Number;
 use MooseX::AttributeHelpers::String;
+use MooseX::AttributeHelpers::Bool;
 use MooseX::AttributeHelpers::Collection::List;
 use MooseX::AttributeHelpers::Collection::Array;
 use MooseX::AttributeHelpers::Collection::Hash;
@@ -42,14 +44,20 @@ MooseX::AttributeHelpers - Extend your attribute interfaces
           get       => 'get_mapping',
           set       => 'set_mapping',
       },
+      curries  => {
+          set       => { set_quantity => [ 'quantity' ] }
+      }
   );
+
 
   # ...
 
   my $obj = MyClass->new;
-  $obj->set_mapping(4, 'foo');
-  $obj->set_mapping(5, 'bar');
-  $obj->set_mapping(6, 'baz');
+  $obj->set_quantity(10);      # quantity => 10
+  $obj->set_mapping(4, 'foo'); # 4 => 'foo'
+  $obj->set_mapping(5, 'bar'); # 5 => 'bar'
+  $obj->set_mapping(6, 'baz'); # 6 => 'baz'
+
 
   # prints 'bar'
   print $obj->get_mapping(5) if $obj->exists_in_mapping(5);
@@ -66,6 +74,44 @@ used attribute helper methods for more specific types of data.
 As seen in the L</SYNOPSIS>, you specify the extension via the 
 C<metaclass> parameter. Available meta classes are:
 
+=head1 PARAMETERS
+
+=head2 provides
+
+This points to a hashref that uses C<provider> for the keys and
+C<method> for the values.  The method will be added to
+the object itself and do what you want.
+
+=head2 curries
+
+This points to a hashref that uses C<provider> for the keys and
+has two choices for the value:
+
+You can supply C<< {method => [ @args ]} >> for the values.  The method will be
+added to the object itself (always using C<@args> as the beginning arguments).
+
+Another approach to curry a method provider is to supply a coderef instead of an
+arrayref. The code ref takes C<$self>, C<$body>, and any additional arguments
+passed to the final method.
+
+  # ...
+
+  curries => {
+      grep => {
+          times_with_day => sub {
+              my ($self, $body, $datetime) = @_;
+              $body->($self, sub { $_->ymd eq $datetime->ymd });
+          }
+      }
+  }
+
+  # ...
+
+  $obj->times_with_day(DateTime->now); # takes datetime argument, checks day
+
+
+=head1 METHOD PROVIDERS
+
 =over
 
 =item L<Number|MooseX::AttributeHelpers::Number>
@@ -75,6 +121,10 @@ Common numerical operations.
 =item L<Counter|MooseX::AttributeHelpers::Counter>
 
 Methods for incrementing and decrementing a counter attribute.
+
+=item L<Counter|MooseX::AttributeHelpers::Bool>
+
+Common methods for boolean values.
 
 =item L<Collection::Hash|MooseX::AttributeHelpers::Collection::Hash>
 
@@ -130,6 +180,10 @@ Robert (phaylon) Sedlacek
 Tom (dec) Lanyon
 
 Yuval Kogman
+
+Jason May
+
+Cory (gphat) Watson
 
 =head1 COPYRIGHT AND LICENSE
 

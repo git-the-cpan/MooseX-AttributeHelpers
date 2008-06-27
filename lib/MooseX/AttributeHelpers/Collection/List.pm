@@ -2,7 +2,7 @@
 package MooseX::AttributeHelpers::Collection::List;
 use Moose;
 
-our $VERSION   = '0.01';
+our $VERSION   = '0.11';
 our $AUTHORITY = 'cpan:STEVAN';
 
 use MooseX::AttributeHelpers::MethodProvider::List;
@@ -46,7 +46,7 @@ MooseX::AttributeHelpers::Collection::List
       default   => sub { [] },
       provides  => {
           map  => 'map_options',
-          grep => 'fitler_options',
+          grep => 'filter_options',
       }
   );
 

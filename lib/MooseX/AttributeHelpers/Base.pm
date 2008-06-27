@@ -3,13 +3,19 @@ package MooseX::AttributeHelpers::Base;
 use Moose;
 use Moose::Util::TypeConstraints;
 
-our $VERSION   = '0.04';
+our $VERSION   = '0.11';
 our $AUTHORITY = 'cpan:STEVAN';
 
 extends 'Moose::Meta::Attribute';
 
 # this is the method map you define ...
 has 'provides' => (
+    is      => 'ro',
+    isa     => 'HashRef',
+    default => sub {{}}
+);
+
+has 'curries' => (
     is      => 'ro',
     isa     => 'HashRef',
     default => sub {{}}
@@ -81,7 +87,7 @@ before '_process_options' => sub {
 
 ## methods called after instantiation
 
-# this confirms that provides has
+# this confirms that provides (and curries) has
 # all valid possibilities in it
 sub check_provides_values {
     my $self = shift;
@@ -92,6 +98,33 @@ sub check_provides_values {
         (exists $method_constructors->{$key})
             || confess "$key is an unsupported method type";
     }
+
+    foreach my $key (keys %{$self->curries}) {
+        (exists $method_constructors->{$key})
+            || confess "$key is an unsupported method type";
+    }
+}
+
+sub _curry {
+    my $self = shift;
+    my $code = shift;
+
+    my @args = @_;
+    return sub {
+        my $self = shift;
+        $code->($self, @args, @_)
+    };
+}
+
+sub _curry_sub {
+    my $self = shift;
+    my $body = shift;
+    my $code = shift;
+
+    return sub {
+        my $self = shift;
+        $code->($self, $body, @_)
+    };
 }
 
 after 'install_accessors' => sub {
@@ -112,6 +145,41 @@ after 'install_accessors' => sub {
     my $method_constructors = $attr->method_constructors;
 
     my $class_name = $class->name;
+
+    while (my ($constructor, $constructed) = each %{$attr->curries}) {
+        my $method_code;
+        while (my ($curried_name, $curried_arg) = each(%$constructed)) {
+            if ($class->has_method($curried_name)) {
+                confess
+                    "The method ($curried_name) already ".
+                    "exists in class (" . $class->name . ")";
+            }
+            my $body = $method_constructors->{$constructor}->(
+                       $attr,
+                       $attr_reader,
+                       $attr_writer,
+            );
+
+            if (ref $curried_arg eq 'ARRAY') {
+                $method_code = $attr->_curry($body, @$curried_arg);
+            }
+            elsif (ref $curried_arg eq 'CODE') {
+                $method_code = $attr->_curry_sub($body, $curried_arg);
+            }
+            else {
+                confess "curries parameter must be ref type HASH or CODE";
+            }
+
+            my $method = MooseX::AttributeHelpers::Meta::Method::Curried->wrap(
+                $method_code,
+                package_name => $class_name,
+                name => $curried_name,
+            );
+                
+            $attr->associate_method($method);
+            $class->add_method($curried_name => $method);
+        }
+    }
 
     foreach my $key (keys %{$attr->provides}) {
 
@@ -139,8 +207,19 @@ after 'install_accessors' => sub {
 after 'remove_accessors' => sub {
     my $attr  = shift;
     my $class = $attr->associated_class;
+
+    # provides accessors
     foreach my $key (keys %{$attr->provides}) {
         my $method_name = $attr->provides->{$key};
+        my $method = $class->get_method($method_name);
+        $class->remove_method($method_name)
+            if blessed($method) &&
+               $method->isa('MooseX::AttributeHelpers::Meta::Method::Provided');
+    }
+
+    # curries accessors
+    foreach my $key (keys %{$attr->curries}) {
+        my $method_name = $attr->curries->{$key};
         my $method = $class->get_method($method_name);
         $class->remove_method($method_name)
             if blessed($method) &&

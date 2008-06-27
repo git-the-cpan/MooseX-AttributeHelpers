@@ -1,13 +1,8 @@
 
-package MooseX::AttributeHelpers::Collection;
+package MooseX::AttributeHelpers::Meta::Method::Curried;
 use Moose;
 
-our $VERSION   = '0.11';
-our $AUTHORITY = 'cpan:STEVAN';
-
-extends 'MooseX::AttributeHelpers::Base';
-
-no Moose;
+extends 'Moose::Meta::Method';
 
 1;
 
@@ -17,25 +12,17 @@ __END__
 
 =head1 NAME
 
-MooseX::AttributeHelpers::Collection - Base class for all collection type helpers
-
+MooseX::AttributeHelpers::Meta::Method::Curried
+  
 =head1 DESCRIPTION
 
-Documentation to come.
+This is an extension of Moose::Meta::Method to mark I<curried> methods.
 
 =head1 METHODS
 
 =over 4
 
 =item B<meta>
-
-=item B<container_type>
-
-=item B<container_type_constraint>
-
-=item B<has_container_type>
-
-=item B<process_options_for_provides>
 
 =back
 
