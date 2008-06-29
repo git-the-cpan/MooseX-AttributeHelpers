@@ -1,7 +1,7 @@
 package MooseX::AttributeHelpers::MethodProvider::List;
 use Moose::Role;
 
-our $VERSION   = '0.11';
+our $VERSION   = '0.12';
 our $AUTHORITY = 'cpan:STEVAN';
  
 sub count : method {
@@ -61,6 +61,27 @@ sub join : method {
     };
 }
 
+sub get : method {
+    my ($attr, $reader, $writer) = @_;
+    return sub {
+        $reader->($_[0])->[$_[1]]
+    };
+}
+
+sub first : method {
+    my ($attr, $reader, $writer) = @_;
+    return sub {
+        $reader->($_[0])->[0]
+    };
+}
+
+sub last : method {
+    my ($attr, $reader, $writer) = @_;
+    return sub {
+        $reader->($_[0])->[-1]
+    };
+}
+
 1;
 
 __END__
@@ -101,6 +122,12 @@ L<MooseX::AttributeHelpers::Collection::List>.
 =item B<elements>
 
 =item B<join>
+
+=item B<get>
+
+=item B<first>
+
+=item B<last>
 
 =back
 

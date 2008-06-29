@@ -2,7 +2,7 @@
 package MooseX::AttributeHelpers::Counter;
 use Moose;
 
-our $VERSION   = '0.11';
+our $VERSION   = '0.12';
 our $AUTHORITY = 'cpan:STEVAN';
 
 use MooseX::AttributeHelpers::MethodProvider::Counter;
@@ -128,7 +128,7 @@ Set the counter to the specified value.
 
 =item I<inc>
 
-Increments the value stored in this slot by 1.Providing an argument will
+Increments the value stored in this slot by 1. Providing an argument will
 cause the counter to be increased by specified amount.
 
 =item I<dec>
