@@ -2,7 +2,8 @@ package MooseX::AttributeHelpers::Bool;
 use Moose;
 use MooseX::AttributeHelpers::MethodProvider::Bool;
 
-our $VERSION   = '0.12';
+our $VERSION   = '0.12_01';
+$VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
 extends 'MooseX::AttributeHelpers::Base';
@@ -73,6 +74,10 @@ basic math operations.
 =item B<helper_type>
 
 =item B<method_constructors>
+
+=item B<has_method_provider>
+
+=item B<method_provider>
 
 =back
 

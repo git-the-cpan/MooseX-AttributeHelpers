@@ -1,7 +1,8 @@
 
 package MooseX::AttributeHelpers;
 
-our $VERSION   = '0.12';
+our $VERSION   = '0.12_01';
+$VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
 use MooseX::AttributeHelpers::Meta::Method::Provided;

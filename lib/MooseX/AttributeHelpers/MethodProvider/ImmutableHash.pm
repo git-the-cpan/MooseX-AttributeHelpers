@@ -1,7 +1,8 @@
 package MooseX::AttributeHelpers::MethodProvider::ImmutableHash;
 use Moose::Role;
 
-our $VERSION   = '0.12';
+our $VERSION   = '0.12_01';
+$VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
 sub exists : method {

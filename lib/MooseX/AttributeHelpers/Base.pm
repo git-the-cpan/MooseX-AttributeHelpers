@@ -3,7 +3,8 @@ package MooseX::AttributeHelpers::Base;
 use Moose;
 use Moose::Util::TypeConstraints;
 
-our $VERSION   = '0.12';
+our $VERSION   = '0.12_01';
+$VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
 extends 'Moose::Meta::Attribute';
@@ -20,7 +21,6 @@ has 'curries' => (
     isa     => 'HashRef',
     default => sub {{}}
 );
-
 
 # these next two are the possible methods
 # you can use in the 'provides' map.
@@ -55,7 +55,7 @@ has 'method_constructors' => (
 
 # extend the parents stuff to make sure
 # certain bits are now required ...
-has '+$!default'       => (required => 1);
+has '+default'         => (required => 1);
 has '+type_constraint' => (required => 1);
 
 ## Methods called prior to instantiation
@@ -250,6 +250,8 @@ Documentation to come.
 
 =item B<provides>
 
+=item B<curries>
+
 =item B<method_provider>
 
 =item B<method_constructors>
@@ -260,9 +262,9 @@ Documentation to come.
 
 =over 4
 
-=item B<$!default>
+=item B<default>
 
-C<$!default> is now required.
+C<default> is now required.
 
 =item B<type_constraint>
 
