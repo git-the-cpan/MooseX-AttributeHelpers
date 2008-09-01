@@ -19,70 +19,70 @@ no_index:
 provides:
   MooseX::AttributeHelpers:
     file: lib/MooseX/AttributeHelpers.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::Base:
     file: lib/MooseX/AttributeHelpers/Base.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::Bool:
     file: lib/MooseX/AttributeHelpers/Bool.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::Collection:
     file: lib/MooseX/AttributeHelpers/Collection.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::Collection::Array:
     file: lib/MooseX/AttributeHelpers/Collection/Array.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::Collection::Bag:
     file: lib/MooseX/AttributeHelpers/Collection/Bag.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::Collection::Hash:
     file: lib/MooseX/AttributeHelpers/Collection/Hash.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::Collection::ImmutableHash:
     file: lib/MooseX/AttributeHelpers/Collection/ImmutableHash.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::Collection::List:
     file: lib/MooseX/AttributeHelpers/Collection/List.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::Counter:
     file: lib/MooseX/AttributeHelpers/Counter.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::Meta::Method::Curried:
     file: lib/MooseX/AttributeHelpers/Meta/Method/Curried.pm
   MooseX::AttributeHelpers::Meta::Method::Provided:
     file: lib/MooseX/AttributeHelpers/Meta/Method/Provided.pm
   MooseX::AttributeHelpers::MethodProvider::Array:
     file: lib/MooseX/AttributeHelpers/MethodProvider/Array.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::MethodProvider::Bag:
     file: lib/MooseX/AttributeHelpers/MethodProvider/Bag.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::MethodProvider::Bool:
     file: lib/MooseX/AttributeHelpers/MethodProvider/Bool.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::MethodProvider::Counter:
     file: lib/MooseX/AttributeHelpers/MethodProvider/Counter.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::MethodProvider::Hash:
     file: lib/MooseX/AttributeHelpers/MethodProvider/Hash.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::MethodProvider::ImmutableHash:
     file: lib/MooseX/AttributeHelpers/MethodProvider/ImmutableHash.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::MethodProvider::List:
     file: lib/MooseX/AttributeHelpers/MethodProvider/List.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::MethodProvider::String:
     file: lib/MooseX/AttributeHelpers/MethodProvider/String.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::Number:
     file: lib/MooseX/AttributeHelpers/Number.pm
-    version: 0.12_01
+    version: 0.13
   MooseX::AttributeHelpers::String:
     file: lib/MooseX/AttributeHelpers/String.pm
-    version: 0.12_01
+    version: 0.13
 requires:
-  Moose: 0.55_01
+  Moose: 0.56
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.12_01
+version: 0.13
