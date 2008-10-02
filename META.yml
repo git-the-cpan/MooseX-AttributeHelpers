@@ -6,11 +6,11 @@ build_requires:
   Test::Exception: 0.21
   Test::More: 0.62
 distribution_type: module
-generated_by: 'Module::Install version 0.77'
+generated_by: 'Module::Install version 0.75'
 license: perl
 meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
+  url: http://module-build.sourceforge.net/META-spec-v1.3.html
+  version: 1.3
 name: MooseX-AttributeHelpers
 no_index:
   directory:
@@ -82,7 +82,5 @@ provides:
     file: lib/MooseX/AttributeHelpers/String.pm
     version: 0.13
 requires:
-  Moose: 0.56
-resources:
-  license: http://dev.perl.org/licenses/
+  Moose: 0.45
 version: 0.13
