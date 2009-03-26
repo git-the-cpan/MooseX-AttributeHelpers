@@ -2,7 +2,7 @@ package MooseX::AttributeHelpers::Bool;
 use Moose;
 use MooseX::AttributeHelpers::MethodProvider::Bool;
 
-our $VERSION   = '0.14';
+our $VERSION   = '0.15';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
@@ -19,7 +19,16 @@ sub helper_type { 'Bool' }
 has '+method_provider' => (
     default => 'MooseX::AttributeHelpers::MethodProvider::Bool'
 );
-    
+
+before 'process_options_for_provides' => sub {
+    my ($self, $options, $name) = @_;
+
+    # Set some default attribute options here unless already defined
+    if ((my $type = $self->helper_type) && !exists $options->{isa}){
+        $options->{isa} = $type;
+    }
+};
+
 no Moose;
 
 # register the alias ...
@@ -44,7 +53,7 @@ MooseX::AttributeHelpers::Bool
   has 'is_lit' => (
       metaclass => 'Bool',
       is        => 'rw',
-      isa       => 'Int',
+      isa       => 'Bool',
       default   => sub { 0 },
       provides  => {
           set     => 'illuminate',

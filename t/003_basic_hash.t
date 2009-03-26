@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 37;
+use Test::More tests => 40;
 use Test::Exception;
 
 BEGIN {
@@ -27,6 +27,7 @@ BEGIN {
             'count'  => 'num_options',
             'clear'  => 'clear_options',
             'delete' => 'delete_option',
+            'exists' => 'has_option',
         },
         curries   => {
             'set'    => {
@@ -46,12 +47,14 @@ can_ok($stuff, $_) for qw[
     num_options
     delete_option
     clear_options
+    has_option
 ];
 
 ok(!$stuff->has_options, '... we have no options');
 is($stuff->num_options, 0, '... we have no options');
 
 is_deeply($stuff->options, {}, '... no options yet');
+ok(!$stuff->has_option('foo'), '... we have no foo option');
 
 lives_ok {
     $stuff->set_option(foo => 'bar');
@@ -59,6 +62,7 @@ lives_ok {
 
 ok($stuff->has_options, '... we have options');
 is($stuff->num_options, 1, '... we have 1 option(s)');
+ok($stuff->has_option('foo'), '... we have a foo option');
 is_deeply($stuff->options, { foo => 'bar' }, '... got options now');
 
 lives_ok {
@@ -102,7 +106,7 @@ lives_ok {
     $stuff->set_quantity(4);
 } '... options added okay with defaults';
 
-is_deeply($stuff->options, {quantity => 4});
+is_deeply($stuff->options, {quantity => 4}, '... returns what we expect');
 
 lives_ok {
     Stuff->new(options => { foo => 'BAR' });
@@ -130,6 +134,7 @@ is_deeply($options->provides, {
     'count'  => 'num_options',
     'clear'  => 'clear_options',
     'delete' => 'delete_option',
+    'exists' => 'has_option',
 }, '... got the right provies mapping');
 
 is($options->type_constraint->type_parameter, 'Str', '... got the right container type');
