@@ -2,7 +2,7 @@
 package MooseX::AttributeHelpers::MethodProvider::String;
 use Moose::Role;
 
-our $VERSION   = '0.15';
+our $VERSION   = '0.16';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
@@ -68,8 +68,31 @@ sub inc : method {
 }
 
 sub clear : method {
-    my ($attr, $reader, $writer ) = @_;
+    my ($attr, $reader, $writer) = @_;
     return sub { $writer->( $_[0], '' ) }
+}
+
+sub substr : method {
+    my ($attr, $reader, $writer) = @_;
+    return sub {
+        my $self = shift;
+        my $v = $reader->($self);
+
+        my $offset      = defined $_[0] ? shift : 0;
+        my $length      = defined $_[0] ? shift : CORE::length($v);
+        my $replacement = defined $_[0] ? shift : undef;
+
+        my $ret;
+        if (defined $replacement) {
+            $ret = CORE::substr($v, $offset, $length, $replacement);
+            $writer->($self, $v);
+        }
+        else {
+            $ret = CORE::substr($v, $offset, $length);
+        }
+
+        return $ret;
+    };
 }
 
 1;
@@ -114,6 +137,8 @@ L<MooseX::AttributeHelpers::String>.
 =item B<inc>
 
 =item B<clear>
+
+=item B<substr>
 
 =back
 
