@@ -3,11 +3,11 @@
 use strict;
 use warnings;
 
-use Test::More tests => 40;
+use Test::More tests => 42;
 use Test::Exception;
 
 BEGIN {
-    use_ok('MooseX::AttributeHelpers');   
+    use_ok('MooseX::AttributeHelpers');
 }
 
 {
@@ -22,12 +22,13 @@ BEGIN {
         default   => sub { {} },
         provides  => {
             'set'    => 'set_option',
-            'get'    => 'get_option',            
+            'get'    => 'get_option',
             'empty'  => 'has_options',
             'count'  => 'num_options',
             'clear'  => 'clear_options',
             'delete' => 'delete_option',
             'exists' => 'has_option',
+            'defined'=> 'is_defined',
         },
         curries   => {
             'set'    => {
@@ -47,6 +48,7 @@ can_ok($stuff, $_) for qw[
     num_options
     delete_option
     clear_options
+    is_defined
     has_option
 ];
 
@@ -59,6 +61,8 @@ ok(!$stuff->has_option('foo'), '... we have no foo option');
 lives_ok {
     $stuff->set_option(foo => 'bar');
 } '... set the option okay';
+
+ok($stuff->is_defined('foo'), '... foo is defined');
 
 ok($stuff->has_options, '... we have options');
 is($stuff->num_options, 1, '... we have 1 option(s)');
@@ -128,13 +132,14 @@ my $options = $stuff->meta->get_attribute('options');
 isa_ok($options, 'MooseX::AttributeHelpers::Collection::Hash');
 
 is_deeply($options->provides, {
-    'set'    => 'set_option',
-    'get'    => 'get_option',            
-    'empty'  => 'has_options',
-    'count'  => 'num_options',
-    'clear'  => 'clear_options',
-    'delete' => 'delete_option',
-    'exists' => 'has_option',
+    'set'     => 'set_option',
+    'get'     => 'get_option',
+    'empty'   => 'has_options',
+    'count'   => 'num_options',
+    'clear'   => 'clear_options',
+    'delete'  => 'delete_option',
+    'defined' => 'is_defined',
+    'exists'  => 'has_option',
 }, '... got the right provies mapping');
 
 is($options->type_constraint->type_parameter, 'Str', '... got the right container type');

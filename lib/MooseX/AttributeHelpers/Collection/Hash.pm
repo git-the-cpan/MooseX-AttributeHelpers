@@ -2,7 +2,7 @@
 package MooseX::AttributeHelpers::Collection::Hash;
 use Moose;
 
-our $VERSION   = '0.16';
+our $VERSION   = '0.17';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
@@ -39,7 +39,7 @@ MooseX::AttributeHelpers::Collection::Hash
   package Stuff;
   use Moose;
   use MooseX::AttributeHelpers;
-  
+
   has 'options' => (
       metaclass => 'Collection::Hash',
       is        => 'ro',
@@ -47,16 +47,16 @@ MooseX::AttributeHelpers::Collection::Hash
       default   => sub { {} },
       provides  => {
           'set'    => 'set_option',
-          'get'    => 'get_option',            
+          'get'    => 'get_option',
           'empty'  => 'has_options',
           'count'  => 'num_options',
           'delete' => 'delete_option',
       }
   );
-  
+
 =head1 DESCRIPTION
 
-This module provides an Hash attribute which provides a number of 
+This module provides a Hash attribute which provides a number of
 hash-like operations. See L<MooseX::AttributeHelpers::MethodProvider::Hash>
 for more details.
 
@@ -76,7 +76,7 @@ for more details.
 
 =head1 BUGS
 
-All complex software has bugs lurking in it, and this module is no 
+All complex software has bugs lurking in it, and this module is no
 exception. If you find a bug please either email me, or add the bug
 to cpan-RT.
 

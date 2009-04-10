@@ -1,7 +1,7 @@
 package MooseX::AttributeHelpers::MethodProvider::Hash;
 use Moose::Role;
 
-our $VERSION   = '0.16';
+our $VERSION   = '0.17';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
@@ -96,6 +96,8 @@ L<MooseX::AttributeHelpers::Collection::ImmutableHash> role.
 =item B<count>
 
 =item B<delete>
+
+=item B<defined>
 
 =item B<empty>
 

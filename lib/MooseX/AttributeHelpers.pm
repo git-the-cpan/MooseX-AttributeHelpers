@@ -1,7 +1,7 @@
 
 package MooseX::AttributeHelpers;
 
-our $VERSION   = '0.16';
+our $VERSION   = '0.17';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
@@ -189,6 +189,8 @@ Jason May
 Cory (gphat) Watson
 
 Florian (rafl) Ragwitz
+
+Evan Carroll
 
 =head1 COPYRIGHT AND LICENSE
 
