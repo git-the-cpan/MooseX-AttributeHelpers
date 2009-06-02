@@ -158,7 +158,7 @@ L<MooseX::AttributeHelpers::Collection::List>.
 
 =item B<count>
 
-Returns the number of elements inthe list.
+Returns the number of elements in the list.
 
    $stuff = Stuff->new;
    $stuff->options(["foo", "bar", "baz", "boo"]);
@@ -264,7 +264,7 @@ Stevan Little E<lt>stevan@iinteractive.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2007-2008 by Infinity Interactive, Inc.
+Copyright 2007-2009 by Infinity Interactive, Inc.
 
 L<http://www.iinteractive.com>
 

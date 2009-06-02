@@ -1,20 +1,32 @@
 
-package MooseX::AttributeHelpers::Collection::ImmutableHash;
-use Moose;
+package MooseX::AttributeHelpers::Trait::Collection::ImmutableHash;
+use Moose::Role;
 
 our $VERSION   = '0.17';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
-extends 'Moose::Meta::Attribute';
-with 'MooseX::AttributeHelpers::Trait::Collection::ImmutableHash';
+use MooseX::AttributeHelpers::MethodProvider::ImmutableHash;
 
-no Moose;
+with 'MooseX::AttributeHelpers::Trait::Collection';
+
+has 'method_provider' => (
+    is        => 'ro',
+    isa       => 'ClassName',
+    predicate => 'has_method_provider',
+    default   => 'MooseX::AttributeHelpers::MethodProvider::ImmutableHash'
+);
+
+sub helper_type { 'HashRef' }
+
+no Moose::Role;
 
 # register the alias ...
 package # hide me from search.cpan.org
-    Moose::Meta::Attribute::Custom::Collection::ImmutableHash;
-sub register_implementation { 'MooseX::AttributeHelpers::Collection::ImmutableHash' }
+    Moose::Meta::Attribute::Custom::Trait::Collection::ImmutableHash;
+sub register_implementation {
+    'MooseX::AttributeHelpers::Trait::Collection::ImmutableHash'
+}
 
 
 1;

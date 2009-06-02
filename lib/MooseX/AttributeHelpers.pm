@@ -1,7 +1,7 @@
 
 package MooseX::AttributeHelpers;
 
-our $VERSION   = '0.17';
+our $VERSION   = '0.18_01';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
@@ -9,6 +9,16 @@ use Moose 0.56 ();
 
 use MooseX::AttributeHelpers::Meta::Method::Provided;
 use MooseX::AttributeHelpers::Meta::Method::Curried;
+
+use MooseX::AttributeHelpers::Trait::Bool;
+use MooseX::AttributeHelpers::Trait::Counter;
+use MooseX::AttributeHelpers::Trait::Number;
+use MooseX::AttributeHelpers::Trait::String;
+use MooseX::AttributeHelpers::Trait::Collection::List;
+use MooseX::AttributeHelpers::Trait::Collection::Array;
+use MooseX::AttributeHelpers::Trait::Collection::Hash;
+use MooseX::AttributeHelpers::Trait::Collection::ImmutableHash;
+use MooseX::AttributeHelpers::Trait::Collection::Bag;
 
 use MooseX::AttributeHelpers::Counter;
 use MooseX::AttributeHelpers::Number;
@@ -192,9 +202,11 @@ Florian (rafl) Ragwitz
 
 Evan Carroll
 
+Jesse (doy) Luehrs
+
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2007, 2008 by Infinity Interactive, Inc.
+Copyright 2007-2009 by Infinity Interactive, Inc.
 
 L<http://www.iinteractive.com>
 

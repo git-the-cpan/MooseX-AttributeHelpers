@@ -1,13 +1,13 @@
 
-package MooseX::AttributeHelpers::Base;
-use Moose;
+package MooseX::AttributeHelpers::Trait::Base;
+use Moose::Role;
 use Moose::Util::TypeConstraints;
 
 our $VERSION   = '0.17';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
-extends 'Moose::Meta::Attribute';
+requires 'helper_type';
 
 # this is the method map you define ...
 has 'provides' => (
@@ -27,11 +27,8 @@ has 'curries' => (
 
 # provide a Class or Role which we can
 # collect the method providers from
-has 'method_provider' => (
-    is        => 'ro',
-    isa       => 'ClassName',
-    predicate => 'has_method_provider',
-);
+
+# requires_attr 'method_provider'
 
 # or you can provide a HASH ref of anon subs
 # yourself. This will also collect and store
@@ -60,8 +57,6 @@ has '+type_constraint' => (required => 1);
 
 ## Methods called prior to instantiation
 
-sub helper_type { () }
-
 sub process_options_for_provides {
     my ($self, $options) = @_;
 
@@ -87,8 +82,6 @@ before '_process_options' => sub {
 
 ## methods called after instantiation
 
-# this confirms that provides (and curries) has
-# all valid possibilities in it
 sub check_provides_values {
     my $self = shift;
 
@@ -227,88 +220,44 @@ after 'remove_accessors' => sub {
     }
 };
 
-no Moose;
+no Moose::Role;
 no Moose::Util::TypeConstraints;
 
 1;
 
 __END__
 
-=pod
-
 =head1 NAME
 
-MooseX::AttributeHelpers::Base - Base class for attribute helpers
-
-=head1 DESCRIPTION
-
-Documentation to come.
-
-=head1 ATTRIBUTES
-
-=over 4
-
-=item B<provides>
-
-=item B<curries>
-
-=item B<method_provider>
-
-=item B<method_constructors>
-
-=back
-
-=head1 EXTENDED ATTRIBUTES
-
-=over 4
-
-=item B<default>
-
-C<default> is now required.
-
-=item B<type_constraint>
-
-C<type_constraint> is now required.
-
-=back
+MooseX::AttributeHelpers::Trait::Base - base role for helpers
 
 =head1 METHODS
 
-=over 4
+=head2 check_provides_values
 
-=item B<meta>
+Confirms that provides (and curries) has all valid possibilities in it.
 
-=item B<helper_type>
+=head2 process_options_for_provides
 
-=item B<check_provides_values>
-
-=item B<has_default>
-
-=item B<has_method_provider>
-
-=item B<has_type_constraint>
-
-=item B<install_accessors>
-
-=item B<remove_accessors>
-
-=item B<process_options_for_provides>
-
-=back
+Ensures that the type constraint (C<isa>) matches the helper type.
 
 =head1 BUGS
 
-All complex software has bugs lurking in it, and this module is no
+All complex software has bugs lurking in it, and this module is no 
 exception. If you find a bug please either email me, or add the bug
 to cpan-RT.
 
-=head1 AUTHOR
+=head1 AUTHORS
 
-Stevan Little E<lt>stevan@iinteractive.comE<gt>
+Yuval Kogman
+
+Shawn M Moore
+
+Jesse Luehrs
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2007-2008 by Infinity Interactive, Inc.
+Copyright 2007-2009 by Infinity Interactive, Inc.
 
 L<http://www.iinteractive.com>
 

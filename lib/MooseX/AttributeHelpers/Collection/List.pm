@@ -6,15 +6,8 @@ our $VERSION   = '0.17';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
-use MooseX::AttributeHelpers::MethodProvider::List;
-
-extends 'MooseX::AttributeHelpers::Collection';
-
-has '+method_provider' => (
-    default => 'MooseX::AttributeHelpers::MethodProvider::List'
-);
-
-sub helper_type { 'ArrayRef' }
+extends 'Moose::Meta::Attribute';
+with 'MooseX::AttributeHelpers::Trait::Collection::List';
 
 no Moose;
 
@@ -83,7 +76,7 @@ Stevan Little E<lt>stevan@iinteractive.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2007-2008 by Infinity Interactive, Inc.
+Copyright 2007-2009 by Infinity Interactive, Inc.
 
 L<http://www.iinteractive.com>
 

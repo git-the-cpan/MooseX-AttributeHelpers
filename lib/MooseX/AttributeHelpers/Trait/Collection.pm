@@ -1,14 +1,14 @@
 
-package MooseX::AttributeHelpers::Collection;
-use Moose;
+package MooseX::AttributeHelpers::Trait::Collection;
+use Moose::Role;
 
 our $VERSION   = '0.17';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
-extends 'MooseX::AttributeHelpers::Base';
+with 'MooseX::AttributeHelpers::Trait::Base';
 
-no Moose;
+no Moose::Role;
 
 1;
 
@@ -52,7 +52,7 @@ Stevan Little E<lt>stevan@iinteractive.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2007-2008 by Infinity Interactive, Inc.
+Copyright 2007-2009 by Infinity Interactive, Inc.
 
 L<http://www.iinteractive.com>
 

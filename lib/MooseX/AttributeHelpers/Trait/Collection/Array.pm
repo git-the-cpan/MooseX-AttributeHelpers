@@ -1,20 +1,32 @@
 
-package MooseX::AttributeHelpers::Collection::Array;
-use Moose;
+package MooseX::AttributeHelpers::Trait::Collection::Array;
+use Moose::Role;
 
 our $VERSION   = '0.17';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
-extends 'Moose::Meta::Attribute';
-with 'MooseX::AttributeHelpers::Trait::Collection::Array';
+use MooseX::AttributeHelpers::MethodProvider::Array;
 
-no Moose;
+with 'MooseX::AttributeHelpers::Trait::Collection';
+
+has 'method_provider' => (
+    is        => 'ro',
+    isa       => 'ClassName',
+    predicate => 'has_method_provider',
+    default   => 'MooseX::AttributeHelpers::MethodProvider::Array'
+);
+
+sub helper_type { 'ArrayRef' }
+
+no Moose::Role;
 
 # register the alias ...
 package # hide me from search.cpan.org
-    Moose::Meta::Attribute::Custom::Collection::Array;
-sub register_implementation { 'MooseX::AttributeHelpers::Collection::Array' }
+    Moose::Meta::Attribute::Custom::Trait::Collection::Array;
+sub register_implementation {
+    'MooseX::AttributeHelpers::Trait::Collection::Array'
+}
 
 
 1;

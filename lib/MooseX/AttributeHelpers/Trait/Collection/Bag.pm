@@ -1,20 +1,47 @@
 
-package MooseX::AttributeHelpers::Collection::Bag;
-use Moose;
+package MooseX::AttributeHelpers::Trait::Collection::Bag;
+use Moose::Role;
+use Moose::Util::TypeConstraints;
 
 our $VERSION   = '0.17';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
-extends 'Moose::Meta::Attribute';
-with 'MooseX::AttributeHelpers::Trait::Collection::Bag';
+use MooseX::AttributeHelpers::MethodProvider::Bag;
 
-no Moose;
+with 'MooseX::AttributeHelpers::Trait::Collection';
+
+has 'method_provider' => (
+    is        => 'ro',
+    isa       => 'ClassName',
+    predicate => 'has_method_provider',
+    default   => 'MooseX::AttributeHelpers::MethodProvider::Bag'
+);
+
+subtype 'Bag' => as 'HashRef[Int]';
+
+sub helper_type { 'Bag' }
+
+before 'process_options_for_provides' => sub {
+    my ($self, $options, $name) = @_;
+
+    # Set some default attribute options here unless already defined
+    if ((my $type = $self->helper_type) && !exists $options->{isa}){
+        $options->{isa} = $type;
+    }
+    
+    $options->{default} = sub { +{} } unless exists $options->{default};
+};
+
+no Moose::Role;
+no Moose::Util::TypeConstraints;
 
 # register the alias ...
 package # hide me from search.cpan.org
-    Moose::Meta::Attribute::Custom::Collection::Bag;
-sub register_implementation { 'MooseX::AttributeHelpers::Collection::Bag' }
+    Moose::Meta::Attribute::Custom::Trait::Collection::Bag;
+sub register_implementation {
+    'MooseX::AttributeHelpers::Trait::Collection::Bag'
+}
 
 1;
 

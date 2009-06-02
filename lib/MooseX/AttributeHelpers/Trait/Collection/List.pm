@@ -1,20 +1,32 @@
 
-package MooseX::AttributeHelpers::Collection::Array;
-use Moose;
+package MooseX::AttributeHelpers::Trait::Collection::List;
+use Moose::Role;
 
 our $VERSION   = '0.17';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
-extends 'Moose::Meta::Attribute';
-with 'MooseX::AttributeHelpers::Trait::Collection::Array';
+use MooseX::AttributeHelpers::MethodProvider::List;
 
-no Moose;
+with 'MooseX::AttributeHelpers::Trait::Collection';
+
+has 'method_provider' => (
+    is        => 'ro',
+    isa       => 'ClassName',
+    predicate => 'has_method_provider',
+    default   => 'MooseX::AttributeHelpers::MethodProvider::List'
+);
+
+sub helper_type { 'ArrayRef' }
+
+no Moose::Role;
 
 # register the alias ...
 package # hide me from search.cpan.org
-    Moose::Meta::Attribute::Custom::Collection::Array;
-sub register_implementation { 'MooseX::AttributeHelpers::Collection::Array' }
+    Moose::Meta::Attribute::Custom::Trait::Collection::List;
+sub register_implementation {
+    'MooseX::AttributeHelpers::Trait::Collection::List'
+}
 
 
 1;
@@ -25,7 +37,7 @@ __END__
 
 =head1 NAME
 
-MooseX::AttributeHelpers::Collection::Array
+MooseX::AttributeHelpers::Collection::List
 
 =head1 SYNOPSIS
 
@@ -34,20 +46,20 @@ MooseX::AttributeHelpers::Collection::Array
   use MooseX::AttributeHelpers;
   
   has 'options' => (
-      metaclass => 'Collection::Array',
+      metaclass => 'Collection::List',
       is        => 'ro',
       isa       => 'ArrayRef[Int]',
       default   => sub { [] },
       provides  => {
-          'push' => 'add_options',
-          'pop'  => 'remove_last_option',
+          map  => 'map_options',
+          grep => 'filter_options',
       }
   );
 
 =head1 DESCRIPTION
 
-This module provides an Array attribute which provides a number of 
-array operations. See L<MooseX::AttributeHelpers::MethodProvider::Array>
+This module provides an List attribute which provides a number of 
+list operations. See L<MooseX::AttributeHelpers::MethodProvider::List>
 for more details.
 
 =head1 METHODS

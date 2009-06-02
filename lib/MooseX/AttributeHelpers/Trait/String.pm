@@ -1,20 +1,56 @@
 
-package MooseX::AttributeHelpers::String;
-use Moose;
+package MooseX::AttributeHelpers::Trait::String;
+use Moose::Role;
 
 our $VERSION   = '0.17';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
-extends 'Moose::Meta::Attribute';
-with 'MooseX::AttributeHelpers::Trait::String';
+use MooseX::AttributeHelpers::MethodProvider::String;
 
-no Moose;
+with 'MooseX::AttributeHelpers::Trait::Base';
+
+has 'method_provider' => (
+    is        => 'ro',
+    isa       => 'ClassName',
+    predicate => 'has_method_provider',
+    default   => 'MooseX::AttributeHelpers::MethodProvider::String',
+);
+
+sub helper_type { 'Str' }
+
+before 'process_options_for_provides' => sub {
+    my ($self, $options, $name) = @_;
+
+    # Set some default attribute options here unless already defined
+    if ((my $type = $self->helper_type) && !exists $options->{isa}){
+        $options->{isa} = $type;
+    }
+    
+    $options->{is}      = 'rw' unless exists $options->{is};
+    $options->{default} = ''   unless exists $options->{default};
+};
+
+after 'check_provides_values' => sub {
+    my $self     = shift;
+    my $provides = $self->provides;
+
+    unless (scalar keys %$provides) {
+        my $method_constructors = $self->method_constructors;
+        my $attr_name           = $self->name;
+        
+        foreach my $method (keys %$method_constructors) {
+            $provides->{$method} = ($method . '_' . $attr_name);
+        }
+    }
+};
+
+no Moose::Role;
 
 # register the alias ...
 package # hide me from search.cpan.org
-    Moose::Meta::Attribute::Custom::String;
-sub register_implementation { 'MooseX::AttributeHelpers::String' }
+    Moose::Meta::Attribute::Custom::Trait::String;
+sub register_implementation { 'MooseX::AttributeHelpers::Trait::String' }
 
 1;
 

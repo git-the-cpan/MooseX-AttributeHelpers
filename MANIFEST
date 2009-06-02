@@ -8,9 +8,7 @@ inc/Module/Install/Metadata.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
 lib/MooseX/AttributeHelpers.pm
-lib/MooseX/AttributeHelpers/Base.pm
 lib/MooseX/AttributeHelpers/Bool.pm
-lib/MooseX/AttributeHelpers/Collection.pm
 lib/MooseX/AttributeHelpers/Collection/Array.pm
 lib/MooseX/AttributeHelpers/Collection/Bag.pm
 lib/MooseX/AttributeHelpers/Collection/Hash.pm
@@ -29,6 +27,17 @@ lib/MooseX/AttributeHelpers/MethodProvider/List.pm
 lib/MooseX/AttributeHelpers/MethodProvider/String.pm
 lib/MooseX/AttributeHelpers/Number.pm
 lib/MooseX/AttributeHelpers/String.pm
+lib/MooseX/AttributeHelpers/Trait/Base.pm
+lib/MooseX/AttributeHelpers/Trait/Bool.pm
+lib/MooseX/AttributeHelpers/Trait/Collection.pm
+lib/MooseX/AttributeHelpers/Trait/Collection/Array.pm
+lib/MooseX/AttributeHelpers/Trait/Collection/Bag.pm
+lib/MooseX/AttributeHelpers/Trait/Collection/Hash.pm
+lib/MooseX/AttributeHelpers/Trait/Collection/ImmutableHash.pm
+lib/MooseX/AttributeHelpers/Trait/Collection/List.pm
+lib/MooseX/AttributeHelpers/Trait/Counter.pm
+lib/MooseX/AttributeHelpers/Trait/Number.pm
+lib/MooseX/AttributeHelpers/Trait/String.pm
 Makefile.PL
 MANIFEST			This list of files
 META.yml
@@ -46,5 +55,13 @@ t/011_counter_with_defaults.t
 t/012_basic_bool.t
 t/020_remove_attribute.t
 t/100_collection_with_roles.t
+t/201_trait_counter.t
+t/202_trait_array.t
+t/203_trait_hash.t
+t/204_trait_number.t
+t/205_trait_list.t
+t/206_trait_bag.t
+t/207_trait_string.t
+t/208_trait_bool.t
 t/pod.t
 t/pod_coverage.t
