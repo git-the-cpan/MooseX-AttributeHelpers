@@ -3,7 +3,7 @@ package MooseX::AttributeHelpers::Trait::Collection::Bag;
 use Moose::Role;
 use Moose::Util::TypeConstraints;
 
-our $VERSION   = '0.19';
+our $VERSION   = '0.20';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
@@ -35,13 +35,6 @@ before 'process_options_for_provides' => sub {
 
 no Moose::Role;
 no Moose::Util::TypeConstraints;
-
-# register the alias ...
-package # hide me from search.cpan.org
-    Moose::Meta::Attribute::Custom::Trait::Collection::Bag;
-sub register_implementation {
-    'MooseX::AttributeHelpers::Trait::Collection::Bag'
-}
 
 1;
 

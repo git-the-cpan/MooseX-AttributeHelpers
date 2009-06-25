@@ -1,7 +1,7 @@
 package MooseX::AttributeHelpers::MethodProvider::ImmutableHash;
 use Moose::Role;
 
-our $VERSION   = '0.19';
+our $VERSION   = '0.20';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
@@ -43,6 +43,16 @@ sub kv : method {
         my $h = $reader->($_[0]);
         map {
             [ $_, $h->{$_} ]
+        } CORE::keys %{$h}
+    };
+}
+
+sub elements : method {
+    my ($attr, $reader, $writer) = @_;
+    return sub {
+        my $h = $reader->($_[0]);
+        map {
+            $_, $h->{$_}
         } CORE::keys %{$h}
     };
 }
@@ -114,7 +124,11 @@ Returns the list of values in the hash.
 
 =item B<kv>
 
-Returns the  key, value pairs in the hash
+Returns the key, value pairs in the hash as array references
+
+=item B<elements>
+
+Returns the key, value pairs in the hash as a flattened list
 
 =back
 

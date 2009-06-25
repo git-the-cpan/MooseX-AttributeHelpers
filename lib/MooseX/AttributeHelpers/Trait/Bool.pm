@@ -2,7 +2,7 @@ package MooseX::AttributeHelpers::Trait::Bool;
 use Moose::Role;
 use MooseX::AttributeHelpers::MethodProvider::Bool;
 
-our $VERSION   = '0.19';
+our $VERSION   = '0.20';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
@@ -33,11 +33,6 @@ before 'process_options_for_provides' => sub {
 };
 
 no Moose::Role;
-
-# register the alias ...
-package # hide me from search.cpan.org
-    Moose::Meta::Attribute::Custom::Trait::Bool;
-sub register_implementation { 'MooseX::AttributeHelpers::Trait::Bool' }
 
 1;
 

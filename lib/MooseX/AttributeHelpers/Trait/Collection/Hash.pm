@@ -2,7 +2,7 @@
 package MooseX::AttributeHelpers::Trait::Collection::Hash;
 use Moose::Role;
 
-our $VERSION   = '0.19';
+our $VERSION   = '0.20';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
@@ -20,14 +20,6 @@ has 'method_provider' => (
 sub helper_type { 'HashRef' }
 
 no Moose::Role;
-
-# register the alias ...
-package # hide me from search.cpan.org
-    Moose::Meta::Attribute::Custom::Trait::Collection::Hash;
-sub register_implementation {
-    'MooseX::AttributeHelpers::Trait::Collection::Hash'
-}
-
 
 1;
 
