@@ -2,7 +2,7 @@
 package MooseX::AttributeHelpers::Collection::Bag;
 use Moose;
 
-our $VERSION   = '0.20';
+our $VERSION   = '0.21';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
@@ -35,7 +35,7 @@ MooseX::AttributeHelpers::Collection::Bag
   has 'word_histogram' => (
       metaclass => 'Collection::Bag',
       is        => 'ro',
-      isa       => 'Bag', # optional ... as is defalt
+      isa       => 'Bag', # optional ... as is default
       provides  => {
           'add'    => 'add_word',
           'get'    => 'get_count_for',            
