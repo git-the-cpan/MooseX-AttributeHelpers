@@ -3,7 +3,7 @@ package MooseX::AttributeHelpers::Trait::Base;
 use Moose::Role;
 use Moose::Util::TypeConstraints;
 
-our $VERSION   = '0.21';
+our $VERSION   = '0.22';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
@@ -45,7 +45,8 @@ has 'method_constructors' => (
         return +{
             map {
                 $_ => $method_provider->get_method($_)
-            } $method_provider->get_method_list
+            }
+            grep { $_ ne 'meta' } $method_provider->get_method_list
         };
     },
 );

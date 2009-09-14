@@ -1,5 +1,9 @@
 Revision history for Perl extension MooseX-AttributeHelpers
 
+0.22 Mon Sep 14, 2009
+    - Fix to work with Moose 0.90. Ignore meta when auto-providing a method
+      provider's methods. (Dave Rolsky)
+	
 0.21 Sun July 19, 2009
     - Add length to String (Florian Ragwitz).
     - Specify build dependency on Test::Moose (Closes RT#47258) (Florian Ragwitz).
