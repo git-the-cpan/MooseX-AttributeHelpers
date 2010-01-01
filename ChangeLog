@@ -1,5 +1,9 @@
 Revision history for Perl extension MooseX-AttributeHelpers
 
+0.23 Fri Jan 1, 2010
+    - A small internals fix to prevent breakage with the next version of
+      Moose. (Dave Rolsky)
+
 0.22 Mon Sep 14, 2009
     - Fix to work with Moose 0.90. Ignore meta when auto-providing a method
       provider's methods. (Dave Rolsky)

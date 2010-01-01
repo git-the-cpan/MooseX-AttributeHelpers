@@ -1,7 +1,7 @@
 
 package MooseX::AttributeHelpers;
 
-our $VERSION   = '0.22';
+our $VERSION   = '0.23';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
@@ -38,7 +38,7 @@ __END__
 
 =head1 NAME
 
-MooseX::AttributeHelpers - Extend your attribute interfaces
+MooseX::AttributeHelpers - Extend your attribute interfaces (deprecated)
 
 =head1 SYNOPSIS
 
@@ -79,6 +79,10 @@ MooseX::AttributeHelpers - Extend your attribute interfaces
   print join ', ', $obj->ids_in_mapping;
 
 =head1 DESCRIPTION
+
+B<This distribution is deprecated. The features it provides have been added to
+the Moose core code as L<Moose::Meta::Attribute::Native>. This distribution
+should not be used by any new code.>
 
 While L<Moose> attributes provide you with a way to name your accessors,
 readers, writers, clearers and predicates, this library provides commonly

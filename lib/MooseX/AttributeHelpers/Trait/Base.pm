@@ -3,7 +3,7 @@ package MooseX::AttributeHelpers::Trait::Base;
 use Moose::Role;
 use Moose::Util::TypeConstraints;
 
-our $VERSION   = '0.22';
+our $VERSION   = '0.23';
 $VERSION = eval $VERSION;
 our $AUTHORITY = 'cpan:STEVAN';
 
@@ -50,11 +50,6 @@ has 'method_constructors' => (
         };
     },
 );
-
-# extend the parents stuff to make sure
-# certain bits are now required ...
-has '+default'         => (required => 1);
-has '+type_constraint' => (required => 1);
 
 ## Methods called prior to instantiation
 
