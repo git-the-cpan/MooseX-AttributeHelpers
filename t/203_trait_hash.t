@@ -156,10 +156,10 @@ is_deeply($options->provides, {
 is($options->type_constraint->type_parameter, 'Str', '... got the right container type');
 
 $stuff->set_option( oink => "blah", xxy => "flop" );
-my @key_value = $stuff->key_value;
+my @key_value = sort { $a->[0] cmp $b->[0] }  $stuff->key_value;
 is_deeply(
     \@key_value,
-    [ [ 'xxy', 'flop' ], [ 'quantity', 4 ], [ 'oink', 'blah' ] ],
+    [ [ 'oink', 'blah' ], [ 'quantity', 4 ], [ 'xxy', 'flop' ] ],
     '... got the right key value pairs'
 );
 

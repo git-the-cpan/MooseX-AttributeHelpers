@@ -2,9 +2,7 @@
 package MooseX::AttributeHelpers::Collection::List;
 use Moose;
 
-our $VERSION   = '0.23';
-$VERSION = eval $VERSION;
-our $AUTHORITY = 'cpan:STEVAN';
+our $VERSION = '0.24';
 
 extends 'Moose::Meta::Attribute';
 with 'MooseX::AttributeHelpers::Trait::Collection::List';

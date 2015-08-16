@@ -2,9 +2,7 @@
 package MooseX::AttributeHelpers::Trait::Counter;
 use Moose::Role;
 
-our $VERSION   = '0.23';
-$VERSION = eval $VERSION;
-our $AUTHORITY = 'cpan:STEVAN';
+our $VERSION = '0.24';
 
 use MooseX::AttributeHelpers::MethodProvider::Counter;
 

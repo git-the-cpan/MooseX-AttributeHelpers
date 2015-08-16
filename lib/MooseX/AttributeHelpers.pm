@@ -1,9 +1,7 @@
 
-package MooseX::AttributeHelpers;
+package MooseX::AttributeHelpers; # git description: 62dd903
 
-our $VERSION   = '0.23';
-$VERSION = eval $VERSION;
-our $AUTHORITY = 'cpan:STEVAN';
+our $VERSION = '0.24';
 
 use Moose 0.56 ();
 
