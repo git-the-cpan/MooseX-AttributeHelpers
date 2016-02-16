@@ -1,9 +1,9 @@
 use strict;
 use warnings;
 
-# this test was generated with Dist::Zilla::Plugin::Test::CheckBreaks 0.012
+# this test was generated with Dist::Zilla::Plugin::Test::CheckBreaks 0.016
 
-use Test::More 0.88;
+use Test::More tests => 2;
 
 SKIP: {
     eval 'require Moose::Conflicts; Moose::Conflicts->check_conflicts';
@@ -14,5 +14,3 @@ SKIP: {
 }
 
 pass 'no x_breaks data to check';
-
-done_testing;

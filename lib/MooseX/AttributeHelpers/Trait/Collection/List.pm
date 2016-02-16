@@ -1,8 +1,7 @@
-
 package MooseX::AttributeHelpers::Trait::Collection::List;
 use Moose::Role;
 
-our $VERSION = '0.24';
+our $VERSION = '0.25';
 
 use MooseX::AttributeHelpers::MethodProvider::List;
 
@@ -25,9 +24,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
-MooseX::AttributeHelpers::Collection::List
+MooseX::AttributeHelpers::Trait::Collection::List
+
+=head1 VERSION
+
+version 0.25
 
 =head1 SYNOPSIS
 
@@ -66,23 +71,26 @@ for more details.
 
 =back
 
-=head1 BUGS
+=head1 SUPPORT
 
-All complex software has bugs lurking in it, and this module is no 
-exception. If you find a bug please either email me, or add the bug
-to cpan-RT.
+Bugs may be submitted through L<the RT bug tracker|https://rt.cpan.org/Public/Dist/Display.html?Name=MooseX-AttributeHelpers>
+(or L<bug-MooseX-AttributeHelpers@rt.cpan.org|mailto:bug-MooseX-AttributeHelpers@rt.cpan.org>).
+
+There is also a mailing list available for users of this distribution, at
+L<http://lists.perl.org/list/moose.html>.
+
+There is also an irc channel available for users of this distribution, at
+L<C<#moose> on C<irc.perl.org>|irc://irc.perl.org/#moose>.
 
 =head1 AUTHOR
 
-Stevan Little E<lt>stevan@iinteractive.comE<gt>
+Stevan Little <stevan@iinteractive.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2007-2009 by Infinity Interactive, Inc.
+This software is copyright (c) 2007 by Stevan Little and Infinity Interactive, Inc.
 
-L<http://www.iinteractive.com>
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut

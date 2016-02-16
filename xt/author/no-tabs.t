@@ -66,12 +66,12 @@ my @files = (
     'xt/author/kwalitee.t',
     'xt/author/mojibake.t',
     'xt/author/no-tabs.t',
+    'xt/author/pod-coverage.t',
+    'xt/author/pod-syntax.t',
     'xt/release/changes_has_content.t',
     'xt/release/distmeta.t',
     'xt/release/minimum-version.t',
-    'xt/release/pod-coverage.t',
     'xt/release/pod-no404s.t',
-    'xt/release/pod-syntax.t',
     'xt/release/portability.t'
 );
 

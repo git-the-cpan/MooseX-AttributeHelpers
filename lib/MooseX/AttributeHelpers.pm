@@ -1,7 +1,7 @@
+package MooseX::AttributeHelpers; # git description: v0.24-5-gb4c52f0
+# ABSTRACT: (DEPRECATED) Extend your attribute interfaces
 
-package MooseX::AttributeHelpers; # git description: 62dd903
-
-our $VERSION = '0.24';
+our $VERSION = '0.25';
 
 use Moose 0.56 ();
 
@@ -34,9 +34,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
-MooseX::AttributeHelpers - Extend your attribute interfaces (deprecated)
+MooseX::AttributeHelpers - (DEPRECATED) Extend your attribute interfaces
+
+=head1 VERSION
+
+version 0.25
 
 =head1 SYNOPSIS
 
@@ -124,7 +130,6 @@ passed to the final method.
 
   $obj->times_with_day(DateTime->now); # takes datetime argument, checks day
 
-
 =head1 METHOD PROVIDERS
 
 =over
@@ -163,64 +168,129 @@ Common list methods for array references.
 
 =back
 
-=head1 CAVEAT
+=head1 DEPRECATION NOTICE
 
-This is an early release of this module. Right now it is in great need 
-of documentation and tests in the test suite. However, we have used this 
-module to great success at C<$work> where it has been tested very thoroughly
-and deployed into a major production site.
+The functionality in this family of modules is now implemented in the L<Moose>
+core as L<Moose::Meta::Attribute::Native|native attribute traits>.  No more
+development is being done on MooseX::AttributeHelpers, so we encourage you to
+switch to native attribute traits.
 
-I plan on getting better docs and tests in the next few releases, but until 
-then please refer to the few tests we do have and feel free email and/or 
-message me on irc.perl.org if you have any questions.
+=head1 SUPPORT
 
-=head1 TODO
+Bugs may be submitted through L<the RT bug tracker|https://rt.cpan.org/Public/Dist/Display.html?Name=MooseX-AttributeHelpers>
+(or L<bug-MooseX-AttributeHelpers@rt.cpan.org|mailto:bug-MooseX-AttributeHelpers@rt.cpan.org>).
 
-We need tests and docs badly.
+There is also a mailing list available for users of this distribution, at
+L<http://lists.perl.org/list/moose.html>.
 
-=head1 BUGS
-
-All complex software has bugs lurking in it, and this module is no 
-exception. If you find a bug please either email me, or add the bug
-to cpan-RT.
+There is also an irc channel available for users of this distribution, at
+L<C<#moose> on C<irc.perl.org>|irc://irc.perl.org/#moose>.
 
 =head1 AUTHOR
 
-Stevan Little E<lt>stevan@iinteractive.comE<gt>
+Stevan Little <stevan@iinteractive.com>
 
-B<with contributions from:>
+=head1 CONTRIBUTORS
 
-Robert (rlb3) Boone
+=for stopwords Shawn M Moore Stevan Little Dave Rolsky Florian Ragwitz Yuval Kogman Jason May Karen Etheridge Cory G Watson Jesse Luehrs Robert Boone Bruno Vecchi Johannes Plunien Mike Whitaker Hans Dieter Pearcey Paul Driver 'phaylon' Sedlacek Evan Carroll Dagfinn Ilmari Mannsåker Chris Prather Tom Lanyon nperez
 
-Paul (frodwith) Driver
+=over 4
 
-Shawn (Sartak) Moore
+=item *
 
-Chris (perigrin) Prather
+Shawn M Moore <sartak@gmail.com>
 
-Robert (phaylon) Sedlacek
+=item *
 
-Tom (dec) Lanyon
+Stevan Little <stevan.little@iinteractive.com>
 
-Yuval Kogman
+=item *
 
-Jason May
+Dave Rolsky <autarch@urth.org>
 
-Cory (gphat) Watson
+=item *
 
-Florian (rafl) Ragwitz
+Florian Ragwitz <rafl@debian.org>
 
-Evan Carroll
+=item *
 
-Jesse (doy) Luehrs
+Yuval Kogman <nothingmuch@woobling.org>
+
+=item *
+
+Jason May <jason.a.may@gmail.com>
+
+=item *
+
+Karen Etheridge <ether@cpan.org>
+
+=item *
+
+Cory G Watson <gphat@onemogin.com>
+
+=item *
+
+Jesse Luehrs <doy@tozt.net>
+
+=item *
+
+Robert Boone <robo4288@gmail.com>
+
+=item *
+
+Bruno Vecchi <vecchi.b@gmail.com>
+
+=item *
+
+Johannes Plunien <plu@pqpq.de>
+
+=item *
+
+Mike Whitaker <mike@altrion.org>
+
+=item *
+
+Hans Dieter Pearcey <hdp@weftsoar.net>
+
+=item *
+
+Paul Driver <frodwith@gmail.com>
+
+=item *
+
+Robert 'phaylon' Sedlacek <rs@474.at>
+
+=item *
+
+Evan Carroll <me@evancarroll.com>
+
+=item *
+
+Dagfinn Ilmari Mannsåker <ilmari@ilmari.org>
+
+=item *
+
+Chris Prather <cprather@hdpublishing.com>
+
+=item *
+
+Tom Lanyon <tom@netspot.com.au>
+
+=item *
+
+Chris Prather <chris@prather.org>
+
+=item *
+
+nperez <nperez@cpan.org>
+
+=back
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2007-2009 by Infinity Interactive, Inc.
+This software is copyright (c) 2007 by Stevan Little and Infinity Interactive, Inc.
 
-L<http://www.iinteractive.com>
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut

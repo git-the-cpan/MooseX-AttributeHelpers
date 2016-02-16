@@ -1,5 +1,8 @@
 Revision history for Perl extension MooseX-AttributeHelpers
 
+0.25      2016-02-16 05:27:31Z
+    - stronger deprecation notice in pod
+
 0.24      2015-08-16 18:49:16Z
     - Don't rely on hash order in tests (RT#81564)
     - repository migrated to the GitHub Moose organization
